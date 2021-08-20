@@ -450,7 +450,9 @@ public class RNPushNotificationHelper {
 
             int notificationID = Integer.parseInt(notificationIdString);
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, notificationID, intent,
+            int iUniqueId = (int) (System.currentTimeMillis() & 0xfffffff);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, iUniqueId, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
 
             NotificationManager notificationManager = notificationManager();
