@@ -107,7 +107,7 @@ public class RNPushNotificationHelper {
             notificationIntent.putExtra(RNPushNotificationPublisher.NOTIFICATION_ID, notificationID);
             notificationIntent.putExtras(bundle);
 
-            return PendingIntent.getBroadcast(context, notificationID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return PendingIntent.getBroadcast(context, notificationID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         } catch (Exception e) {
             Log.e(LOG_TAG, "Unable to parse Notification ID", e);
         }
@@ -453,7 +453,7 @@ public class RNPushNotificationHelper {
             int iUniqueId = (int) (System.currentTimeMillis() & 0xfffffff);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, iUniqueId, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             NotificationManager notificationManager = notificationManager();
 
@@ -531,7 +531,7 @@ public class RNPushNotificationHelper {
                     }
 
                     PendingIntent pendingActionIntent = PendingIntent.getBroadcast(context, notificationID, actionIntent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                     if(action.equals("ReplyInput")){
                         //Action with inline reply
                         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT_WATCH){
